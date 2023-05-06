@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    margin: 0;
+    margin: 0; /* si el padding tendria algun valor,tiene mayor jerarquia y acturia primero*/
     padding: 0;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
         "Geneva", Verdana, sans-serif;
@@ -45,7 +45,7 @@ header {
     border-bottom: 2px solid var(--color-active);
 }
 
-nav > ul {
+nav > ul { /* cuando se entre al ul se hace lo sig..*/
     display: flex;
     justify-content: space-between;
     justify-content: center;
@@ -56,13 +56,13 @@ nav li {
         0 0 auto;
 }
 
-nav li a{
+nav li a{/* modifican a los <a> */
     display:block;
-    padding: 16px 12px;
+    padding: 16px 12px; /* arriba y abajo 16, izq y der*/
     text-align: center;
     text-decoration: none;
-    font-size: 1em;
-    font-weight: bold;
+    font-size: 1em;  /* 1 em = 16px */
+    font-weight: bold; /* grosor de letra*/
     color: var(--color-texto-blanco);
     background-color: var(--color-back-inactive);
 }
@@ -75,8 +75,8 @@ nav li.current-page a {
 
 main {
     margin-top: 120px;
-    overflow: auto;
-    padding: 16px;
+    overflow: auto; /* mete lo que sobra del texto dentro de la caja+scroll*/
+    padding: 16px; 
     padding-bottom: 60px;
     height: calc (100% - 120px);
     width: 100%;
@@ -147,7 +147,8 @@ main p {
     height: 60px;
 }
 
-.loader::before {
+.loader::before /*pseudoElemento-- 2 solo : pseudoClase*/
+{
     content: "";
     box-sizing: border-box;
     position: absolute;
