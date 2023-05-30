@@ -1,0 +1,44 @@
+#form-cine_contacto {
+  display: flex;
+}
+
+main {
+  padding-bottom: 13%;
+}
+
+.Formulario {
+  margin: 15px;
+  padding: 10px;
+  background-color: rgba(0, 0, 255, 0.09);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.formu {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+
+}
+
+.btn button {
+  background-color: var(--button-color);
+  color: var(--color-fondo-main);
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: #065143;
+
+}
+
+.btn button:hover {
+  background-color: forestgreen;
+}

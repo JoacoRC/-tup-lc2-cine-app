@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUP LC2 - TP Integrador - Cine</title>
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/pages/common.css" />
+    <link rel="stylesheet" href="css/pages/help.css" />
+
+    
+</head>
+
+<body>
+    <header>
+        <h1>
+            <img src="../css/img/IconoCine.png" alt="icono">
+
+            <!--Titulo Cabecera-->
+            <span>Cartelera de Cine</span>
+        </h1>
+        <nav>
+            <!--Menu Superior-->
+            <ul>
+                <li><a href="index.html">Cartelera</a></li>
+                <li><a href="favorities.html">Mis Favoritas</a></li>
+                <li class="current-page"><a href="help.html">Ayuda</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Contenido principal de la página -->
+    <main>
+        <h2>Ayuda Cine App v.1</h2>
+        <p>
+        <div> Esta App te permite consultar la cartelera de cine utilizando la API de
+            <a href="https://www.themoviedb.org/documentation/api" target="_blank"> The movie database API</a>
+        </div><br>
+        <div>
+            Para poder registrar sus peliculas favoritas debera <a href="./index.html">Agregar Favoritos</a> desde la
+            cartelera
+            y luego
+            visualizar nuestros favoritos desde <a href="./favorities.html">Mis Favoritas</a>
+        </div><br>
+        <div>
+            Si tiene alguna sugerencia o inconveniente por favor complete el siguiente formulario y envienoslo. Lo
+            contactaremos a la brevedad.</div><br> <br>
+        </p>
+        <p>
+            <section id="form-cine_contacto">
+                <form action="/procesar-formulario" method="POST" class="Formulario">
+                    <div class="formu">
+                        <label for="nombre"> <b>Nombre:</b> </label>
+                        <input type="text" id="nombre"><br></div>
+                    <div class="formu">
+                        <label for="email"> <b>Email: </b> </label> 
+                        <input type="email" id="email"><br></div>
+                    <div class="formu">
+                        <label for="msj"> <b>Mensaje: </b> </label> 
+                        <textarea name="msj" id="msj" cols="50" rows="8"></textarea>
+                    </div>
+                <br>
+                    <div class="btn">
+                        <button type="submit" class="btnHelp"> Limpiar</button>
+                        <button type="submit" class="btnHelp"> Enviar</button>
+                    </div>
+                </form>
+    
+            </section>
+        </p>
+    </main>
+    <footer>
+        <p>Desarrollado con ♥ - LC2</p>
+    </footer>
+</body>
+
+</html>
