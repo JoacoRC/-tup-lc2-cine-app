@@ -42,3 +42,12 @@ main {
 .btn button:hover {
   background-color: forestgreen;
 }
+body.darkmode button{
+  background-color: #000000d8;
+  color: #ffffffd2;
+}
+body.darkmode button:hover{
+  background-color: #39106cd8;
+  color: #ffae00d2;
+  transform: scale(1.1);
+}

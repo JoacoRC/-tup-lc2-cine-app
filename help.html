@@ -8,6 +8,7 @@
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/pages/common.css" />
     <link rel="stylesheet" href="css/pages/help.css" />
+    <link rel="icon" href="css/img/cinema_popcorn.ico">
 
     
 </head>
@@ -15,7 +16,7 @@
 <body>
     <header>
         <h1>
-            <img src="../css/img/IconoCine.png" alt="icono">
+            <img src="css/img/IconoCine.png" alt="icono">
 
             <!--Titulo Cabecera-->
             <span>Cartelera de Cine</span>
@@ -70,8 +71,36 @@
         </p>
     </main>
     <footer>
-        <p>Desarrollado con ♥ - LC2</p>
+        <p>Desarrollado con ♥ By Joaquín R. - LC2</p>
+        <div>
+        <button id="bdark">DarkMode</button>
+        </div>
     </footer>
+    <script defer src="js/pages/help.js"></script>
+    <script defer src="js/pages/common.js">
+    </script>
+    <script>
+        const bdark = document.querySelector('#bdark');
+        const body = document.querySelector('body');
+        load();
+        bdark.addEventListener('click',e =>{
+            body.classList.toggle('darkmode');
+            store(body.classList.contains('darkmode'));
+        });
+        function load(){
+            const darkmode = localStorage.getItem('darkmode');
+            if(!darkmode){
+                store('false');
+            }else if (darkmode == 'true'){
+                body.classList.add('darkmode');
+            }
+        }
+        function store (value){
+            localStorage.setItem('darkmode',value)
+
+        }
+
+        </script>
 </body>
 
 </html>

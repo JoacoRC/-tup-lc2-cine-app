@@ -4,6 +4,7 @@
   /* si el padding tendria algun valor,tiene mayor jerarquia y acturia primero*/
   padding: 0;
   font-family: "Montserrat", sans-serif;
+  transition: all 1s ease;
 }
 
 :root {
@@ -23,6 +24,7 @@
 body {
   height: 100%;
   width: 100%;
+  
 }
 
 ul {
@@ -44,7 +46,8 @@ header {
   background-image: url("../img/FondoCine6.webp");
   border-radius: 0 0% 20px 20px;
   border-bottom: 2px solid var(--color-active);
-  
+  z-index: 10;
+
 }
 
 nav>ul {
@@ -113,6 +116,9 @@ h2 {
   padding: 15px;
   text-align: center;
 }
+body.darkmode h2{
+  text-shadow:1px 8px 4px  #39106cd8;
+}
 
 h3 {
   color: var(--color-theme);
@@ -126,21 +132,55 @@ main section {
 }
 
 footer {
+  display: flex;
   font-weight: bold;
   position: fixed;
-  bottom: 0px;
+  bottom: -20px;
   background-color: var(--color-active);
   width: 100%;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
+  justify-content: flex-end;
 }
 
 footer p {
+  margin-right: 39%;
   font-size: small;
   color: var(--color-theme);
 }
+body.darkmode img:hover{
+  background-color: #39106cd8;
 
+}
+
+#bdark{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background-color: #373c3c;
+  border-radius: 5px;
+  padding: 0px; 
+  color: #9a2b8f;
+  font-weight: bold;
+}
+#bdark:hover{
+  transform: scale(1.2);
+  transition: all 0.3s;
+}
+body.darkmode{
+  --color-theme: #ffae00d2;
+  --color-active: #5f1057df;
+  --color-back-active: #2e0137b9;
+  --color-back-inactive: #530d8de1;
+  --color-titulos: #ffae00d2;
+  --color-texto-blanco: #000000;
+  --color-gradient: linear-gradient(to right, var(--color-theme),
+      var(--color-active));
+  --color-fondo-main: #4e4d4d;
+  ;
+  transition: all 1s ease;
+}
 main p {
   margin-bottom: 16px;
 }
@@ -192,7 +232,7 @@ main p {
   display: none;
 }
 
-.msg {
+.sec-messages{
   width: 50%;
   margin: 20px auto;
   padding: 15px;
@@ -205,12 +245,38 @@ main p {
 
 .amarillo {
   background-color: #ffc107;
+  width: 50%;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 200;
+  text-align: center;
 }
 
 .rojo {
   background-color: #dc3545;
+  width: 50%;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 200;
+  text-align: center;
 }
 
 .verde {
   background-color: #28a745;
+  width: 50%;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 200;
+  text-align: center;
 }
+
+.button{ cursor: pointer;}
