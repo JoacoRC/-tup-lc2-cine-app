@@ -18,14 +18,16 @@ function obtenerFavoritos() {
   return favoritos ? JSON.parse(favoritos) : [];
 }
 
-/// Función para obtener la URL completa del póster
+// Función para obtener la URL completa del póster
 function obtenerPosterUrl(posterPath) {
-  if (posterPath) {
+  if (posterPath && posterPath !== 'N/A') {
     return `https://image.tmdb.org/t/p/w500/${posterPath}`;
   } else {
-    return 'imagen-no-disponible.jpg';
+    return 'ruta-a-imagen-por-defecto.jpg'; // Ruta a una imagen por defecto en caso de que no haya póster disponible
   }
 }
+
+
 function mostrarFavoritos() {
   const contenedorFavoritos = document.getElementById('sec_favoritos');
   const contenedorMensajes = document.getElementById('sec-messages');
@@ -56,16 +58,19 @@ function mostrarFavoritos() {
 
         // Crear el contenido de la película favorita (título, resumen, póster, botón de quitar)
         const peliculaContenido = document.createElement('div');
+
+        // Obtener el póster de la película
+        const posterUrl = obtenerPosterUrl(pelicula.posterPath);
+
         peliculaContenido.innerHTML = `
-          <img class="poster" src="${obtenerPosterUrl(pelicula.poster_path)}" alt="${pelicula.title}" />
-          <h3 class="titulo">${pelicula.title}</h3>
+          <img class="poster" src="${posterUrl}" alt="${pelicula.title}" />
+          <h3 class="titulo"> ${pelicula.titulo}</h3>
           <p>
-            <b>Código:</b> ${pelicula.id}<br>
-            <b>Título original:</b> ${pelicula.original_title}<br>
-            <b>Idioma original:</b> ${pelicula.original_language}<br>
-            <b>Año:</b> ${pelicula.release_date}<br>
-          </p>
-          <button class="button radius btnQuitar" data-codigo="${pelicula.id}">Quitar de Favoritos</button>
+            <b>Código:</b> ${pelicula.codigo}<br><br>
+            <b>Título original:</b> ${pelicula.tituloOriginal}<br>
+            <b>Idioma original:</b> ${pelicula.idiomaOriginal}<br>
+            <b>Resumen:</b>${pelicula.overview}</p>
+          <button class="button radius btnQuitar" data-codigo="${pelicula.codigo}">Quitar de Favoritos</button>
         `;
 
         // Agregar el evento de clic al botón "Quitar de Favoritos"
@@ -75,7 +80,10 @@ function mostrarFavoritos() {
           mostrarFavoritos(); // Volver a mostrar los favoritos después de quitar uno
         });
 
-        peliculaDiv.appendChild(peliculaContenido);
+        // Mover el contenido de peliculaContenido a peliculaDiv
+        while (peliculaContenido.firstChild) {
+          peliculaDiv.appendChild(peliculaContenido.firstChild);
+        }
 
         // Agregar el elemento de película favorita al contenedor
         contenedorFavoritos.appendChild(peliculaDiv);
@@ -83,9 +91,6 @@ function mostrarFavoritos() {
     });
   }
 }
-
-
-
 
 // Quitar una película de la lista de favoritos en el Local Storage
 function quitarDeFavoritos(codigo) {
@@ -96,11 +101,6 @@ function quitarDeFavoritos(codigo) {
     favoritos.splice(index, 1);
     localStorage.setItem('favoritos', JSON.stringify(favoritos));
   }
-}
-
-// Función para mostrar un mensaje de éxito
-function mostrarMensajeExito(mensaje) {
-  console.log('Éxito:', mensaje);
 }
 
 // Llamar a la función mostrarFavoritos al cargar la página

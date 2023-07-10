@@ -42,8 +42,8 @@
   transform: translateY(-15px);
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.685);
   border-radius: 15px;
-  
 }
+
 
 
 .poster {
@@ -147,22 +147,24 @@
 .button:hover {
   box-shadow: 0px 0px 0px;
 }
-body.darkmode .paginacion button{
+
+body.darkmode .paginacion button {
   color: #ffae00d2;
-  box-shadow:0px 0px 20px rgba(199, 167, 50, 0.685);
-}
-body.darkmode button{
-  background-color: #39106cd8;
-  color: #ffae00d2;
-}
-body.darkmode .pelicula:hover{
-  background-color: #39106cd8;
-  box-shadow:  0 12px 16px rgba(199, 167, 50, 0.685);
+  box-shadow: 0px 0px 20px rgba(199, 167, 50, 0.685);
 }
 
-body.darkmode .button.radius:hover{
+body.darkmode button {
+  background-color: #39106cd8;
+  color: #ffae00d2;
+}
+
+body.darkmode .pelicula:hover {
+  background-color: #39106cd8;
+  box-shadow: 0 12px 16px rgba(199, 167, 50, 0.685);
+}
+
+body.darkmode .button.radius:hover {
   transform: scale(1.15);
-  box-shadow:0px 0px 12px rgba(199, 167, 50, 0.685);
+  box-shadow: 0px 0px 12px rgba(199, 167, 50, 0.685);
   background-color: rgba(105, 40, 209, 0.743);
 }
- 

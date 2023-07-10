@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/pages/common.css" />
     <link rel="stylesheet" href="css/pages/favorities.css" />
     <link rel="icon" href="css/img/cinema_popcorn.ico">
-    
+    <script defer src="js/pages/favorities.js"></script>
+    <script defer src="js/pages/common.js"></script>
 </head>
 
 <body>
@@ -36,9 +37,9 @@
             <!--Seccion para mensajes-->
         </section>
         <section id="sec_favoritos">
-          
-          </section>
-          
+
+        </section>
+
     </main>
     <footer>
         <p>Desarrollado con ♥ By Joaquín R. - LC2</p>
@@ -46,30 +47,8 @@
             <button id="bdark">DarkMode</button>
         </div>
     </footer>
-   
-    <script>
-        const bdark = document.querySelector('#bdark');
-        const body = document.querySelector('body');
-        load();
-        bdark.addEventListener('click', e => {
-            body.classList.toggle('darkmode');
-            store(body.classList.contains('darkmode'));
-        });
-        function load() {
-            const darkmode = localStorage.getItem('darkmode');
-            if (!darkmode) {
-                store('false');
-            } else if (darkmode == 'true') {
-                body.classList.add('darkmode');
-            }
-        }
-        function store(value) {
-            localStorage.setItem('darkmode', value)
-        }
-    </script>
-    <script defer src="js/pages/favorities.js"></script>
+
+
 </body>
 
 </html>
-
-

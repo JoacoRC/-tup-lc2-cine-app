@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="css/pages/common.css" />
     <link rel="stylesheet" href="css/pages/index.css" />
     <link rel="icon" href="css/img/cinema_popcorn.ico">
-    
+    <!-- <script defer src="js/pages/favorities.js"></script>-->
+    <script defer src="js/pages/index.js"></script>
+    <script defer src="js/pages/common.js"></script>
 </head>
 
 <body>
@@ -35,16 +37,14 @@
             <h4>Agregar Película Favorita por Código:</h4>
             <form class="form-container">
                 <div>
-                    <input type="text" name="codigo">
+                    <input type="text" placeholder=" ***Código de la Película***" name="codigo" id="codigoPelicula">
                 </div>
-                <button type="submit" >Agregar</button>
+                <button type="submit">Agregar</button>
             </form>
             <br>
             <!--Seccion para agregar una película favorita por codigo-->
         </section>
-        <section id="sec-favoritos">
-            <!--Seccion para mensajes-->
-        </section>
+        
         <section id="sec-messages">
             <!--Seccion para mensajes-->
             <p id="mensajeDuplicado"> </p>
@@ -52,8 +52,8 @@
         <section id="sec_peliculas">
             <!--Seccion visualizacion de películas-->
         </section>
-         
-        
+
+
         <div id="contenedorFavoritos">
             <div class="peliFav" data-codigo="677179">
                 <!-- ...contenido... -->
@@ -73,29 +73,8 @@
             <button id="bdark">DarkMode</button>
         </div>
     </footer>
-    
-    <script defer src="js/pages/favorities.js"></script>
-<script defer src="js/pages/index.js"></script>
-    <script>
-        const bdark = document.querySelector('#bdark');
-        const body = document.querySelector('body');
-        load();
-        bdark.addEventListener('click', e => {
-            body.classList.toggle('darkmode');
-            store(body.classList.contains('darkmode'));
-        });
-        function load() {
-            const darkmode = localStorage.getItem('darkmode');
-            if (!darkmode) {
-                store('false');
-            } else if (darkmode == 'true') {
-                body.classList.add('darkmode');
-            }
-        }
-        function store(value) {
-            localStorage.setItem('darkmode', value)
-        }
-    </script>
+
+
 </body>
 
 </html>

@@ -17,6 +17,9 @@ async function consultarCartelera() {
   try {
     // Realizar la consulta a la API
     const response = await fetch(`${apiUrl}/movie/now_playing?api_key=${apiKey}&language=es`);
+    if (!response.ok) {
+      throw new Error('Error al consultar la cartelera.');
+    }
     const data = await response.json();
 
     // Almacenar las películas en una variable global
@@ -26,8 +29,10 @@ async function consultarCartelera() {
     mostrarPeliculas();
   } catch (error) {
     console.error('Error al consultar la cartelera:', error);
+    mostrarMensajeError('Error al consultar la cartelera. Por favor, inténtalo nuevamente más tarde.');
   }
 }
+
 
 // Función para mostrar las películas en la página
 function mostrarPeliculas() {
@@ -48,6 +53,7 @@ function mostrarPeliculas() {
 
     // Agregar el contenido de cada película en el DOM
     const posterUrl = pelicula.poster_path ? `https://image.tmdb.org/t/p/w500/${pelicula.poster_path}` : 'imagen-no-disponible.jpg';
+
     peliculaElemento.innerHTML = `
       <img class="poster" src="${posterUrl}" alt="${pelicula.title}" />
       <h3 class="titulo">${pelicula.title}</h3>
@@ -101,8 +107,7 @@ btnSiguiente.addEventListener('click', irPaginaSiguiente);
 function agregarPeliculaAFavoritos(codigo) {
   const peliculaExistente = buscarPeliculaPorCodigo(codigo);
   if (peliculaExistente) {
-    const mensajeDuplicado = document.getElementById('mensajeDuplicado');
-    mensajeDuplicado.textContent = 'Pelicula ingresada ya se encuentra almacenada.';
+    mostrarMensajeError('La película ya está agregada a favoritos.');
     return;
   }
 
@@ -120,6 +125,8 @@ function agregarPeliculaAFavoritos(codigo) {
             tituloOriginal: data.original_title,
             idiomaOriginal: data.original_language,
             anio: data.release_date,
+            overview: data.overview,
+            posterUrl: data.poster_path
           };
 
           agregarAFavoritos(pelicula);
@@ -128,13 +135,14 @@ function agregarPeliculaAFavoritos(codigo) {
       })
       .catch(error => {
         console.error('Error al consultar la película:', error);
-        mostrarMensajeError('La Película seleccionada no se encuentra en la API o se produjo un error al consultar.');
+        mostrarMensajeError('La película seleccionada no se encuentra en la API o se produjo un error al consultar.');
       });
   } catch (error) {
     console.error('Error al consultar la película:', error);
-    mostrarMensajeError('La Película seleccionada no se encuentra en la API o se produjo un error al consultar.');
+    mostrarMensajeError('La película seleccionada no se encuentra en la API o se produjo un error al consultar.');
   }
 }
+
 
 // Función para mostrar un mensaje de error
 function mostrarMensajeError(mensaje) {
@@ -146,6 +154,8 @@ function mostrarMensajeError(mensaje) {
   mensajesElemento.appendChild(mensajeError);
 }
 
+
+
 // Función para mostrar un mensaje de éxito
 function mostrarMensajeExito(mensaje) {
   const mensajesElemento = document.getElementById('sec-messages');
@@ -155,8 +165,6 @@ function mostrarMensajeExito(mensaje) {
   mensajeExito.textContent = mensaje;
   mensajesElemento.appendChild(mensajeExito);
 }
-
-
 
 // Función para buscar una película por código
 function buscarPeliculaPorCodigo(codigo) {
@@ -178,13 +186,25 @@ function agregarAFavoritos(pelicula) {
   localStorage.setItem('favoritos', JSON.stringify(favoritos));
 }
 
-// Función para mostrar un mensaje de error
-function mostrarMensajeError(mensaje) {
-  console.error('Error:', mensaje);
+
+// Función para agregar una película por código
+function agregarPeliculaPorCodigo(event) {
+  event.preventDefault(); // Evita que se envíe el formulario
+
+  const codigo = document.getElementById('codigoPelicula').value;
+  agregarPeliculaAFavoritos(codigo);
+
+  // Limpiar el campo de entrada después de agregar la película
+  document.getElementById('codigoPelicula').value = '';
 }
+
+// Agregar un evento de envío al formulario
+const formPelicula = document.querySelector('.form-container');
+formPelicula.addEventListener('submit', agregarPeliculaPorCodigo);
 
 // Llamar a la función consultarCartelera al cargar la página
 window.addEventListener('DOMContentLoaded', consultarCartelera);
+
 
 
 
