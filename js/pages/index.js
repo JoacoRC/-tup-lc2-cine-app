@@ -1,7 +1,6 @@
 //localStorage(clear)
 const apiKey = '4622ec444e15b7b102d80062a71b234e';
 const apiUrl = 'https://api.themoviedb.org/3';
-
 // Obtén los elementos necesarios
 const btnAnterior = document.getElementById('btnAnterior');
 const btnSiguiente = document.getElementById('btnSiguiente');
@@ -153,8 +152,6 @@ function mostrarMensajeError(mensaje) {
   mensajeError.textContent = mensaje;
   mensajesElemento.appendChild(mensajeError);
 }
-
-
 
 // Función para mostrar un mensaje de éxito
 function mostrarMensajeExito(mensaje) {

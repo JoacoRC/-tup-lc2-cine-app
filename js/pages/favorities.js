@@ -11,22 +11,18 @@ async function consultarPelicula(codigo) {
     throw error;
   }
 }
+// Función para agregar una película a la lista de favoritos en el Local Storage
+function agregarPeliculaAFavoritos(pelicula) {
+  const favoritos = obtenerFavoritos();
+  favoritos.push(pelicula);
+  localStorage.setItem('favoritos', JSON.stringify(favoritos));
+}
 
 // Obtener la lista de favoritos del Local Storage
 function obtenerFavoritos() {
   const favoritos = localStorage.getItem('favoritos');
   return favoritos ? JSON.parse(favoritos) : [];
 }
-
-// Función para obtener la URL completa del póster
-function obtenerPosterUrl(posterPath) {
-  if (posterPath && posterPath !== 'N/A') {
-    return `https://image.tmdb.org/t/p/w500/${posterPath}`;
-  } else {
-    return 'ruta-a-imagen-por-defecto.jpg'; // Ruta a una imagen por defecto en caso de que no haya póster disponible
-  }
-}
-
 
 function mostrarFavoritos() {
   const contenedorFavoritos = document.getElementById('sec_favoritos');
@@ -59,17 +55,15 @@ function mostrarFavoritos() {
         // Crear el contenido de la película favorita (título, resumen, póster, botón de quitar)
         const peliculaContenido = document.createElement('div');
 
-        // Obtener el póster de la película
-        const posterUrl = obtenerPosterUrl(pelicula.posterPath);
-
         peliculaContenido.innerHTML = `
-          <img class="poster" src="${posterUrl}" alt="${pelicula.title}" />
-          <h3 class="titulo"> ${pelicula.titulo}</h3>
+          <img class="poster" src="https://image.tmdb.org/t/p/w500/${pelicula.posterUrl}" alt="${pelicula.title}" />
+          <h3 class="titulo">${pelicula.titulo}</h3>
           <p>
             <b>Código:</b> ${pelicula.codigo}<br><br>
             <b>Título original:</b> ${pelicula.tituloOriginal}<br>
             <b>Idioma original:</b> ${pelicula.idiomaOriginal}<br>
-            <b>Resumen:</b>${pelicula.overview}</p>
+            <b>Resumen:</b> ${pelicula.overview}
+          </p>
           <button class="button radius btnQuitar" data-codigo="${pelicula.codigo}">Quitar de Favoritos</button>
         `;
 
@@ -92,9 +86,13 @@ function mostrarFavoritos() {
   }
 }
 
+function mostrarMensajeError(mensaje) {
+  const mensajeError = document.getElementById('error-message');
+  mensajeError.textContent = mensaje;
+}
+
 // Quitar una película de la lista de favoritos en el Local Storage
 function quitarDeFavoritos(codigo) {
-  console.log('Quitar de Favoritos:', codigo);
   let favoritos = obtenerFavoritos();
   const index = favoritos.findIndex(pelicula => pelicula.codigo === codigo);
   if (index !== -1) {
